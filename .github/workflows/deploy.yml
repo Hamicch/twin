@@ -34,8 +34,7 @@ jobs:
           echo "$ACTIONS_ID_TOKEN_REQUEST_TOKEN" | cut -c1-20
           curl -sS -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
             "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=sts.amazonaws.com" | \
-            python3 -c "import sys,json,b64; j=json.load(sys.stdin); p=j['value'].split('.'); print(json.loads(b64.urlsafe_b64decode(p[1]+'==').decode()))"
-          echo "GitHub Actions ID Token: $TOKEN"
+            python3 -c "import sys,json,base64; j=json.load(sys.stdin); p=j['value'].split('.'); pad='=' * (-len(p[1]) % 4); print(json.loads(base64.urlsafe_b64decode(p[1]+pad).decode()))"
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
