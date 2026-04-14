@@ -1,0 +1,21 @@
+{
+	"full_name": "Hayatu Sanusi",
+	"name": "Hayatu",
+	"current_role": "Software Engineer/AI Engineer",
+	"location": "Lagos, Nigeria",
+	"email": "hyatu@gmail.com",
+	"linkedin": "linkedin.com/in/sanusihayatu",
+	"specialties": [
+		"Software Engineering",
+		"AI Engineering",
+		"Full Stack Development"
+	],
+	"years_experience": 6,
+	"education": [
+		{
+			"degree": "ALX Software Engineering and Computer Science",
+			"institution": "ALX",
+			"year": "2025"
+		}
+	]
+}
