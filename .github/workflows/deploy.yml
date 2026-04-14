@@ -29,6 +29,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Get GitHub Actions ID Token
+        run: |
+          echo "$ACTIONS_ID_TOKEN_REQUEST_TOKEN" | cut -c1-20
+          curl -sS -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
+            "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=sts.amazonaws.com" | \
+            python3 -c "import sys,json,b64; j=json.load(sys.stdin); p=j['value'].split('.'); print(json.loads(b64.urlsafe_b64decode(p[1]+'==').decode()))"
+          echo "GitHub Actions ID Token: $TOKEN"
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
